@@ -56,12 +56,12 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to connect to server: %v", err)
 	}
-	defer func(conn *grpc.ClientConn) {
+	defer func() {
 		err := conn.Close()
 		if err != nil {
 			log.Fatalf("failed to close the connection: %v", err.Error())
 		}
-	}(conn)
+	}()
 
 	c := desc.NewChatV1Client(conn)
 
